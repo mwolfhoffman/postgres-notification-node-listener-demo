@@ -4,6 +4,5 @@ This repo is a demo for how to set up a notification with postgres and a listern
 
 ## To Run
 
-1. `docker compose logs -f server`
-1. `docker compose up -d`
-1. You will see notifications appearing in the server logs.
+1. `docker compose up`
+1. You will see notifications appearing in the server logs when row is inserted into db. 
