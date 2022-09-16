@@ -1,5 +1,5 @@
 const express = require("express");
-const { Pool } = require("pg");
+const { Client } = require("pg");
 const createSubscriber = require("pg-listen");
 
 (async function () {
@@ -10,30 +10,30 @@ const createSubscriber = require("pg-listen");
   });
 
   console.log(1);
-  const dbClient = new Pool({
-    host: "postgresql",
+  const dbClient = new Client({
+    host: "postgres",
     user: "pguser",
     password: "password",
     database: "pg-notify-db",
     port: "5432",
-    ssl: {
-      rejectUnauthorized: false,
-    },
   });
-  
-  const tableName = "table_1";
-  const notifyFnName = "number_changed_function";
-  const triggerName = "number_changed_trigger";
-  const eventName = "number_was_added";
-  
-  await dbClient.query(`CREATE TABLE IF NOT EXISTS ${tableName}(
-    number INT 
-    )`);
-    console.log(2);
-    
+
+  await dbClient.connect();
+
+  // const tableName = "table_1";
+  // const notifyFnName = "number_changed_function";
+  // const triggerName = "number_changed_trigger";
+  // const eventName = "number_was_added";
+
+  // await dbClient.query(`CREATE TABLE IF NOT EXISTS ${tableName}(
+  //   number INT
+  //   )`);
+
+  console.log(2);
+
   // await dbClient.query(
-  //   `CREATE FUNCTION IF NOT EXISTS ${notifyFnName}() 
-  //           RETURNS TRIGGER 
+  //   `CREATE FUNCTION IF NOT EXISTS ${notifyFnName}()
+  //           RETURNS TRIGGER
   //           LANGUAGE PLPGSQL
   //           AS $$
   //           DECLARE number text;
