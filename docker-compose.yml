@@ -23,7 +23,7 @@ services:
       - PGUSER=pguser
       - PGPASSWORD=password
       - PGDATABASE=pg-notify-db
-      - PGHOST= localhost
+      - PGHOST=postgres
     volumes:
       - ./server:/server
       - /server/node_modules
